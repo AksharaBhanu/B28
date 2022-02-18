@@ -22,17 +22,20 @@ class BaseTest:
         self.xl_path = p_file['XLPATH']
 
         # open the browser
+        browser = p_file['BROWSER']
+        print("Browser is:", browser)
+
         use_grid=p_file['USEGRID']
 
         if use_grid=='YES':
             print("Using Selenium Grid")
             grid_url=p_file['GRIDURL']
-            browser=p_file['BROWSER']
-            print("Browser is:", browser)
+
             if browser=='chrome':
                 browser_option = ChromeOptions()
             else:
                 browser_option = FirefoxOptions()
+
             self.driver = webdriver.Remote(command_executor=grid_url, options=browser_option)
 
         else:
